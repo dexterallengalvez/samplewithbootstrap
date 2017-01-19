@@ -1,0 +1,17 @@
+<div class="col-sm-12">
+    <h1>Hero Dashboard</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let hero of heroes" (click)="GoToDetail(hero.id)">
+                <td>{{hero.id}}</td>
+                <td>{{hero.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

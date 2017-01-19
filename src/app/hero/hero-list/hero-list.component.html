@@ -1,0 +1,19 @@
+<div class="col-sm-12">
+    <h1>Hero Catalog</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let hero of heroes">
+                <td>{{hero.id}}</td>
+                <td><a [routerLink]="['/hero-detail', hero.id]">{{hero.name}}</a></td>
+                <td><button class="btn btn-primary" (click)="RemoveHero(hero)">X</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

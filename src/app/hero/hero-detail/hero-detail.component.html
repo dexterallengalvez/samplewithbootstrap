@@ -1,0 +1,16 @@
+<h1>Hero Details</h1>
+<div class="col-sm-12">
+    <form>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" [(ngModel)]="hero.id" name="id">
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="hero.name" name="name">
+        </div>
+    </form>
+    <button (click)="UpdateHero()" class="btn btn-primary">Update</button>
+
+    <button (click)="GoBack()" class="btn btn-warning">Back</button>
+</div>
