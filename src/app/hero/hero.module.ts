@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -8,7 +8,7 @@ import { HeroComponents } from './hero-components';
 
 @NgModule({
   imports: [
-    CommonModule, RouterModule, FormsModule, 
+    CommonModule, RouterModule, FormsModule, ReactiveFormsModule
   ],
   declarations: [ HeroComponents ],
   exports: [ HeroComponents ],

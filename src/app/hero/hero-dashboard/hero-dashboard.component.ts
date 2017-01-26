@@ -24,7 +24,7 @@ export class HeroDashboardComponent implements OnInit {
 
   //Encapsulate Retrieval of Heroes
   GetHeroes() : void{
-    this.heroService.RetrieveHeroes().then(heroes => this.heroes = heroes.slice(1,3));
+    this.heroService.RetrieveHeroes().subscribe(heroes => this.heroes = heroes.slice(1,4));
   }
 
   GoToDetail(id: number) : void{

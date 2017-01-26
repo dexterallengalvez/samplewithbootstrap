@@ -1,3 +1,4 @@
+import { HeroFormComponent } from './hero-form/hero-form.component';
 import { HeroListComponent }  from './hero-list/hero-list.component';
 import { HeroDetailComponent }  from './hero-detail/hero-detail.component'
 import { HeroDashboardComponent }  from './hero-dashboard/hero-dashboard.component';
@@ -5,5 +6,6 @@ import { HeroDashboardComponent }  from './hero-dashboard/hero-dashboard.compone
 export const HeroComponents = [
     HeroListComponent,
     HeroDetailComponent,
-    HeroDashboardComponent
+    HeroDashboardComponent,
+    HeroFormComponent
 ]

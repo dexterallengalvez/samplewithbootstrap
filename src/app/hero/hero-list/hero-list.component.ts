@@ -16,7 +16,13 @@ export class HeroListComponent implements OnInit {
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
-    this.heroService.RetrieveHeroes().then(heroes => this.heroes = heroes);
+    this.heroService.RetrieveHeroes().subscribe(
+      heroes => {
+        this.heroes = heroes;
+      },
+      error => {
+        console.log(`Error: ${error}`);
+      });
   }
 
   RemoveHero(hero){

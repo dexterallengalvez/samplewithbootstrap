@@ -1,0 +1,7 @@
+<div class="col-sm-12 form-group jumbotron">
+  <form [formGroup]="heroForm" (ngSubmit)="SubmitForm(heroForm.value)" >
+    <label for="HeroName">Hero Name: </label> <input type="text" class="form-control" [formControl]="heroForm.controls['heroName']">
+    <label for="Id">ID: </label> <input type="text" class="form-control" #heroIdCreate [formControl]="heroForm.controls['id']">
+    <button type="submit" class="btn btn-primary" [disabled]="!heroForm.valid">Submit</button>
+  </form>
+</div>

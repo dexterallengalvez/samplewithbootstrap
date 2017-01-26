@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs';
 import { CONSTANTS } from './../constants';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { HEROES } from './mock-heroes';
 import { Hero } from './hero';
@@ -11,12 +12,11 @@ export class HeroService {
   private headers = new Headers({'Content-Type' : 'application/json'});
   constructor(private http: Http) { }
 
-  RetrieveHeroes(): Promise<Hero[]>{
+  RetrieveHeroes(): Observable<Hero[]>{
     //return Promise.resolve(HEROES);    
     return this.http.get(CONSTANTS.HEROES_URL)
-    .toPromise()
-    .then(response => response.json().data as Hero[])
-    .catch(error => { console.log("Error" + error); });
+               .map((result : Response) => result.json().data)
+               .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }
 
   RetieveHeroesSlowly(): Promise<Hero[]>{
@@ -25,12 +25,11 @@ export class HeroService {
     });
   }
 
-  GetHero(id: number) : Promise<Hero>{
+  GetHero(id: number) : Observable<Hero>{
     const url = `${CONSTANTS.HEROES_URL}/${id}`;
     return this.http.get(url)
-    .toPromise()
-    .then(response => response.json().data as Hero)
-    .catch(error => console.log(`Error: ${error}`));
+    .map((response : Response) => response.json().data as Hero)
+    .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
     //return this.RetrieveHeroes().then(heroes => heroes.find(hero => hero.id == id))
   }
 

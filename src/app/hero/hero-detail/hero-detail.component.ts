@@ -1,3 +1,4 @@
+import { Response } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -38,7 +39,14 @@ export class HeroDetailComponent implements OnInit {
     this.route.params.subscribe(
         (parameter: Params) => this.paramHeroId = parameter['id']
       );
-    this.heroService.GetHero(this.paramHeroId).then(hero => this.hero = hero);
+    this.heroService.GetHero(this.paramHeroId).subscribe(
+      response => {
+        this.hero = response;
+      },
+      error => {
+        console.log(`Error: ${error}`);
+      }
+    );
   }
 
   UpdateHero() : void{
