@@ -1,5 +1,9 @@
+import { NotificationsService } from './../../../../node_modules/angular2-notifications/src/notifications.service';
+import { Observable } from 'rxjs';
+import { Response } from '@angular/http';
+import { HeroService } from './../hero.service';
 import { Hero } from './../hero';
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, Output} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -8,12 +12,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./hero-form.component.scss']
 })
 export class HeroFormComponent implements OnInit {
-
+  
+  options: any;
   heroForm : FormGroup;
 
-  constructor(fb : FormBuilder) {
+  constructor(fb : FormBuilder, private heroService : HeroService, private notificationService : NotificationsService) {
     this.heroForm = fb.group({
-      'heroName': ['', Validators.required],
+      'name': ['', Validators.required],
       'id': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(10)])]
     });
    }
@@ -22,7 +27,21 @@ export class HeroFormComponent implements OnInit {
     
   }
 
-  SubmitForm(value : any){
-    console.log(value.heroName);
+  SubmitForm(hero : Hero){
+    this.heroService.CreateHero(hero)
+    .subscribe(
+      result => { console.log(`Hero Created`); },
+      error => { Observable.throw(`Error: ${error}`) }
+    );
+    this.notificationService.success(
+        'Success!',
+        `${hero.name} has been created`,
+        {
+            timeOut: 5000,
+            showProgressBar: true,
+            pauseOnHover: false,
+            clickToClose: false,
+        }
+    );
   }
 }

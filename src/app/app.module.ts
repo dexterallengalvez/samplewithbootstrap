@@ -1,3 +1,4 @@
+import { SimpleNotificationsModule } from './../../node_modules/angular2-notifications/src/simple-notifications.module';
 import { PostModule } from './post/post.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -18,15 +19,11 @@ import { MainRouter } from './app-router';
     AppComponent,
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    SharedModule,
-    HeroModule,
-    MainRouter,
-    HttpModule,
-    PostModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    BrowserModule, SimpleNotificationsModule,
+    FormsModule, HttpModule,
+    SharedModule, HeroModule,
+    MainRouter, HttpModule,
+    PostModule, InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,7 +1,20 @@
+
+
 <div class="col-sm-12 form-group jumbotron">
   <form [formGroup]="heroForm" (ngSubmit)="SubmitForm(heroForm.value)" >
-    <label for="HeroName">Hero Name: </label> <input type="text" class="form-control" [formControl]="heroForm.controls['heroName']">
-    <label for="Id">ID: </label> <input type="text" class="form-control" #heroIdCreate [formControl]="heroForm.controls['id']">
-    <button type="submit" class="btn btn-primary" [disabled]="!heroForm.valid">Submit</button>
+    <div class="form-group" [ngClass]="{'has-error':!heroForm.controls['name'].valid && heroForm.controls['name'].touched}"> 
+      <label for="name">Hero Name: </label> 
+      <input type="text" class="form-control" [formControl]="heroForm.controls['name']">
+      <div class="alert alert-danger" *ngIf="heroForm.controls['name'].hasError('required') && heroForm.controls['name'].touched">This field is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error':!heroForm.controls['id'].valid && heroForm.controls['id'].touched}"> 
+      <label for="Id">ID: </label> 
+      <input type="text" class="form-control" #heroIdCreate [formControl]="heroForm.controls['id']">
+     <div class="alert alert-danger" *ngIf="heroForm.controls['id'].hasError('required') && heroForm.controls['id'].touched">This field is required</div>
+     <div class="alert alert-danger" *ngIf="heroForm.controls['id'].hasError('minlength') && heroForm.controls['id'].touched">The Minimum Length is 3</div>
+     <div class="alert alert-danger" *ngIf="heroForm.controls['id'].hasError('maxlength') && heroForm.controls['id'].touched">The Maximum Length is 10</div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!heroForm.valid">Create</button>  
   </form>
+  <simple-notifications></simple-notifications>
 </div>

@@ -37,7 +37,14 @@
   "addons": [
     "../node_modules/font-awesome/fonts/*.+(otf|eot|svg|ttf|woff|woff2)"
   ],
-  "packages": [],
+  "packages": [
+      {
+        "angular2-notifications": { 
+          "main": "components.js", 
+          "defaultExtension": "js" 
+        }
+      }
+  ],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"

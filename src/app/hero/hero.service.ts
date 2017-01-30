@@ -33,12 +33,17 @@ export class HeroService {
     //return this.RetrieveHeroes().then(heroes => heroes.find(hero => hero.id == id))
   }
 
-  UpdateHero(hero: Hero) : Promise<Hero>{
+  UpdateHero(hero: Hero) : Observable<Hero>{
     const url = `${CONSTANTS.HEROES_URL}/${hero.id}`;
     return this.http.put(url, JSON.stringify(hero), {headers: this.headers})
-                .toPromise()
-                .then(() => hero)
-                .catch(error => console.log(`Error: ${error}`));
+                    .map((result : Response) => result.json())
+                    .catch((error: any) => Observable.throw(error || 'Server Error'));
+  }
+
+  CreateHero(hero: Hero) : Observable<Hero>{
+    return this.http.post(this.heroesUrl, JSON.stringify(hero), {headers: this.headers})
+    .map((result : Response) => result.json())
+    .catch((error : any) => Observable.throw(error || 'Server Error'));
   }
 
 }

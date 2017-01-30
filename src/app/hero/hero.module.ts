@@ -1,3 +1,4 @@
+import { SimpleNotificationsModule } from './../../../node_modules/angular2-notifications/src/simple-notifications.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,7 +9,7 @@ import { HeroComponents } from './hero-components';
 
 @NgModule({
   imports: [
-    CommonModule, RouterModule, FormsModule, ReactiveFormsModule
+    CommonModule, RouterModule, FormsModule, ReactiveFormsModule, SimpleNotificationsModule
   ],
   declarations: [ HeroComponents ],
   exports: [ HeroComponents ],
