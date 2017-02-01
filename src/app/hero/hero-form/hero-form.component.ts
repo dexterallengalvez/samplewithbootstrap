@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Response } from '@angular/http';
 import { HeroService } from './../hero.service';
 import { Hero } from './../hero';
-import { Component, OnInit, Output} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -15,6 +15,7 @@ export class HeroFormComponent implements OnInit {
   
   options: any;
   heroForm : FormGroup;
+  @Output() hero : EventEmitter<Hero> = new EventEmitter<Hero>();
 
   constructor(fb : FormBuilder, private heroService : HeroService, private notificationService : NotificationsService) {
     this.heroForm = fb.group({
@@ -30,7 +31,7 @@ export class HeroFormComponent implements OnInit {
   SubmitForm(hero : Hero){
     this.heroService.CreateHero(hero)
     .subscribe(
-      result => { console.log(`Hero Created`); },
+      result => { this.hero.next(result as Hero) },
       error => { Observable.throw(`Error: ${error}`) }
     );
     this.notificationService.success(

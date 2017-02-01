@@ -1,4 +1,5 @@
 import { SimpleNotificationsModule } from './../../../node_modules/angular2-notifications/src/simple-notifications.module';
+import { NotificationsService } from './../../../node_modules/angular2-notifications/src/notifications.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,7 @@ import { HeroComponents } from './hero-components';
   declarations: [ HeroComponents ],
   exports: [ HeroComponents ],
   bootstrap: [ HeroListComponent ],
-  providers: [ HeroService ]
+  providers: [ HeroService, NotificationsService ]
 })
 export class HeroModule { }
 

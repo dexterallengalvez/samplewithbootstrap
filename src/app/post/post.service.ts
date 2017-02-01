@@ -10,7 +10,7 @@ export class PostService {
   private postsurl : string = 'https://jsonplaceholder.typicode.com/posts';
   private headers = new Headers({
         'Accept' : 'application/json',
-        'Content-Type' : 'application/json', 
+        'Content-Type' : 'gzip', 
         'Access-Control-Allow-Credentials' : 'true', 
         'Content-Encoding' : 'gzip  ', 
         'Access-Control-Allow-Origin': '*',
@@ -20,7 +20,7 @@ export class PostService {
   constructor(private http: Http) { }
 
   GetPosts() : Observable<Post[]>{
-    return this.http.get(`${this.postsurl}`).map((res : Response) => res.json());
+    return this.http.get(`${this.postsurl}`, {headers: this.headers}).map((res : Response) => res.json());
   }
 
 }

@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { CONSTANTS } from './../constants';
 import { Http, Headers, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
@@ -10,6 +10,8 @@ export class HeroService {
 
   private heroesUrl = 'api/heroes';
   private headers = new Headers({'Content-Type' : 'application/json'});
+  
+
   constructor(private http: Http) { }
 
   RetrieveHeroes(): Observable<Hero[]>{
@@ -42,7 +44,7 @@ export class HeroService {
 
   CreateHero(hero: Hero) : Observable<Hero>{
     return this.http.post(this.heroesUrl, JSON.stringify(hero), {headers: this.headers})
-    .map((result : Response) => result.json())
+    .map((result : Response) => result.json().data as Hero)
     .catch((error : any) => Observable.throw(error || 'Server Error'));
   }
 

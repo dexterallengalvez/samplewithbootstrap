@@ -1,6 +1,6 @@
 <div class="col-sm-12">
     <h1>Hero Catalog</h1>
-    <app-hero-form></app-hero-form>
+    <app-hero-form (hero)="RefreshHeroList($event)"></app-hero-form>
     <table class="table table-hover">
         <thead>
             <tr>
